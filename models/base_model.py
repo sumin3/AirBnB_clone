@@ -1,6 +1,7 @@
 #!/usr/bin/
 import uuid
 import datetime
+from models import storage
 
 
 class BaseModel:
@@ -22,6 +23,7 @@ class BaseModel:
             else:
                 self.created_at = datetime.datetime.now()
             self.save()
+            storage.new(self)
 
         else:
             self.id = str(uuid.uuid4())
@@ -30,6 +32,7 @@ class BaseModel:
 
     def save(self):
         self.updated_at = datetime.datetime.now()
+        storage.save()
 
     def __str__(self):
         """Returns a string descriptor of the rectangle"""
