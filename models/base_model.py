@@ -33,7 +33,7 @@ class BaseModel:
 
     def to_dict(self):
         """returns a dictionary containing all keys/values of instance"""
-        retval = self.__dict__
+        retval = self.__dict__.copy()
         retval["__class__"] = self.__class__.__name__
         retval["created_at"] = self.created_at.isoformat()
         retval["updated_at"] = self.updated_at.isoformat()
