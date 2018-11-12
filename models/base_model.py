@@ -1,38 +1,27 @@
 #!/usr/bin/
 import uuid
-import datetime
-from models import storage
+from datetime import datetime
+import models
 
 
 class BaseModel:
     def __init__(self, *args, **kwargs):
         """Initer"""
-        if len(kwargs):
+        if kwargs:
             for k, v in kwargs.items():
-                if k is not "__class__":
-                    setattr(self, k, v)
-
-            if 'id' not in kwargs:
-                self.id = str(uuid.uuid4())
-
-            if 'created_at' in kwargs:
-                self.created_at = datetime.datetime.strptime(
-                    kwargs['created_at'],
-                    "%Y-%m-%dT%H:%M:%S.%f"
-                )
-            else:
-                self.created_at = datetime.datetime.now()
-            self.save()
-            storage.new(self)
-
+                if k in ["created_at", "updated_at"]:
+                    v = datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f")
+                if k != '__class__':
+                    self.__setattr__(k, v)
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.datetime.now()
-            self.save()
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def save(self):
-        self.updated_at = datetime.datetime.now()
-        storage.save()
+        self.updated_at = datetime.now()
+        models.storage.save()
 
     def __str__(self):
         """Returns a string descriptor of the rectangle"""
