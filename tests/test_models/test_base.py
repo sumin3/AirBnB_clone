@@ -25,12 +25,15 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(self.model1.id, self.model2.id)
         """model1.created_at is type datetime
         """
+    def test_created_at(self):
+
         self.assertEqual(type(self.model1.created_at), datetime)
         """model1.name is string
         """
         self.assertEqual(type(self.model1.name), str)
         """model1.name is "Holberton"
         """
+    def test_name(self):
         self.assertEqual(self.model1.name, "Holberton")
 
         """model2.name is string
@@ -42,6 +45,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(self.model2.name, "Betty")
         """model1.my_number is int
         """
+    def test_number(self):
         self.assertEqual(type(self.model2.my_number), int)
         """model1.my_number is 89
         """
@@ -54,14 +58,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(self.model2.my_number, 98)
         """model1.created_at < model1.updated_at
         """
+    def test_updated_at(self):
         self.assertGreater(self.model1.updated_at, self.model1.created_at)
         self.assertGreater(self.model2.updated_at, self.model2.created_at)
         """self.model1.created_at < self.model2.created_at
         """
         self.assertGreater(self.model2.created_at, self.model1.created_at)
         self.assertGreater(self.model2.updated_at, self.model1.updated_at)
-        """test types of new attrs"""
-        self.assertEqual(type(self.model1.id), str)
 
         """"Test in file.json:
         """
@@ -69,4 +72,8 @@ class TestBaseModel(unittest.TestCase):
         """
         """model1.updated_at: type string"
         """
+    def test_new_types(self):
+        """test types of new attrs"""
         self.assertEqual(type(self.model1.float), float)
+        self.assertEqual(self.model1.float, 1.1)
+
