@@ -122,6 +122,7 @@ class HBNBCommand(cmd.Cmd):
             key = "{}.{}".format(arg_list[0], arg_list[1])
             try:
                 del(all_objs[key])
+                storage.save()
             except BaseException:
                 print("** no instance found **")
 
