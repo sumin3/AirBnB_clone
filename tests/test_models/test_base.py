@@ -127,4 +127,3 @@ class TestBaseModel(unittest.TestCase):
     def test_new_model_number(self):
         """ model3 and model2 have the same my_number value """
         self.assertEqual(self.model2.my_number, self.model3.my_number)
-
