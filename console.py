@@ -145,16 +145,12 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         elif len(arg_list) == 2:
             print("** attribute name missing **")
-        elif getattr(all_objs.get("{}.{}".format(
-                arg_list[0], arg_list[1])), arg_list[2]) is None:
-            pass
         elif len(arg_list) == 3:
             print("** value missing **")
         else:
             key = "{}.{}".format(arg_list[0], arg_list[1])
             obj = all_objs.get(key)
-            type_attr = type(getattr(obj, arg_list[2]))
-            setattr(obj, arg_list[2], type_attr(arg_list[3]))
+            setattr(obj, arg_list[2], arg_list[3])
             obj.save()
 
 if __name__ == '__main__':
