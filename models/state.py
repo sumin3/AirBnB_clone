@@ -9,4 +9,3 @@ class State(BaseModel):
         name: string - empty string
     """
     name = ""
-
