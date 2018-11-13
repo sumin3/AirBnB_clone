@@ -1,7 +1,14 @@
 #!/usr/bin/python3
 """ FileStorage module """
+
 import json
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
@@ -47,10 +54,19 @@ class FileStorage:
         do nothing. If the file doesn’t exist, no exception should
         be raised)
         """
+        cls_dict = {"BaseModel": BaseModel,
+                    "User": User,
+                    "State": State,
+                    "City": City,
+                    "Amenity": Amenity,
+                    "Place": Place,
+                    "Review": Review}
         try:
             with open(self.__file_path, mode="r", encoding="utf-8") as f:
                 d = json.load(f)
                 for k, v in d.items():
-                    self.__class__.__objects[k] = BaseModel(**v)
+                    k_list = k.split('.')
+                    self.__class__.__objects[k] = cls_dict.get(
+                        k_list[0])(**v)
         except FileNotFoundError:
             pass
