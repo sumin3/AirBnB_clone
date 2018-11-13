@@ -122,7 +122,7 @@ class HBNBCommand(cmd.Cmd):
             key = "{}.{}".format(arg_list[0], arg_list[1])
             try:
                 del(all_objs[key])
-            except:
+            except BaseException:
                 print("** no instance found **")
 
     def do_update(self, args):
@@ -150,8 +150,20 @@ class HBNBCommand(cmd.Cmd):
         else:
             key = "{}.{}".format(arg_list[0], arg_list[1])
             obj = all_objs.get(key)
-            setattr(obj, arg_list[2], arg_list[3])
+            if hasattr(obj, arg_list[2]):
+                type_attr = type(getattr(obj, arg_list[2]))
+                setattr(obj, arg_list[2], type_attr(arg_list[3]))
+            else:
+                try:
+                    arg_list[3] = int(arg_list[3])
+                except ValueError:
+                    try:
+                        arg_list[3] = float(arg_list[3])
+                    except ValueError:
+                        pass
+                setattr(obj, arg_list[2], arg_list[3])
             obj.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
