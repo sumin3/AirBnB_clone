@@ -4,6 +4,12 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -14,15 +20,23 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = '(hbnb) '
     cls_dict = {
-        "BaseModel": BaseModel
+        "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review
     }
+
+    def postloop(self):
+        print()
 
     def do_EOF(self, args):
         """do_EOF: Ctrl+D to exit
         Return:
             return True
         """
-        print()
         return True
 
     def do_quit(self, args):
@@ -82,9 +96,12 @@ class HBNBCommand(cmd.Cmd):
             args: a string in format: <className>
         """
         arg_list = args.split()
-        if not args or arg_list[0] in self.cls_dict:
-            all_objs = storage.all()
+        all_objs = storage.all()
+        if not args:
             print([str(v) for v in all_objs.values()])
+        elif arg_list[0] in self.cls_dict:
+            print([str(v) for v in all_objs.values() if type(
+                v) == self.cls_dict.get(arg_list[0])])
         else:
             print("** class doesn't exist **")
 
@@ -128,12 +145,17 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         elif len(arg_list) == 2:
             print("** attribute name missing **")
+        elif getattr(all_objs.get("{}.{}".format(
+                arg_list[0], arg_list[1])), arg_list[2]) is None:
+            pass
         elif len(arg_list) == 3:
             print("** value missing **")
         else:
             key = "{}.{}".format(arg_list[0], arg_list[1])
-            setattr(all_objs.get(key), arg_list[2], arg_list[3])
-            all_objs.get(key).save()
+            obj = all_objs.get(key)
+            type_attr = type(getattr(obj, arg_list[2]))
+            setattr(obj, arg_list[2], type_attr(arg_list[3]))
+            obj.save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
