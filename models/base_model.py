@@ -1,10 +1,18 @@
 #!/usr/bin/
+""" Base module """
 import uuid
 from datetime import datetime
 import models
 
 
 class BaseModel:
+    """ class Base parent class
+    Attributes:
+        id: string - uuid for the model
+        created_at: datetime obj - date and time instance was created
+        updated_at: datetime obj - date and time instance was updated
+    """
+
     def __init__(self, *args, **kwargs):
         """Initer"""
         if kwargs:
@@ -20,6 +28,7 @@ class BaseModel:
             models.storage.new(self)
 
     def save(self):
+        """Updates updated_at when saved"""
         self.updated_at = datetime.now()
         models.storage.save()
 
