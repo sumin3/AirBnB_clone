@@ -6,6 +6,8 @@ from datetime import datetime
 
 
 class TestBaseModel(unittest.TestCase):
+    """ class Base parent class unit tests
+    """
 
     def setUp(self):
         self.model1 = BaseModel()
@@ -15,7 +17,6 @@ class TestBaseModel(unittest.TestCase):
         self.model2.name = "Betty"
         self.model2.my_number = 98
         self.model1.float = 1.1
-
         self.model2_dict = self.model2.to_dict()
         self.model3 = BaseModel(**self.model2_dict)
 
@@ -89,9 +90,6 @@ class TestBaseModel(unittest.TestCase):
             self.model1.id,
             self.model1.__dict__
         ))
-
-    # def test_new_model_created_at(self):
-        """ model3.created_at is type datetime """
 
     def test_to_dict(self):
         """ tests to_dict method """
