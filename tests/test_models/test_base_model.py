@@ -10,6 +10,7 @@ class TestBaseModel(unittest.TestCase):
     """
 
     def setUp(self):
+        """ setup tests """
         self.model1 = BaseModel()
         self.model1.name = "Holberton"
         self.model1.my_number = 89
@@ -19,6 +20,13 @@ class TestBaseModel(unittest.TestCase):
         self.model1.float = 1.1
         self.model2_dict = self.model2.to_dict()
         self.model3 = BaseModel(**self.model2_dict)
+
+    def tearDown(self):
+        """ teardown tests """
+        del self.model1
+        del self.model2
+        del self.model3
+        del self.model2_dict
 
     def test_id(self):
         """id is string
