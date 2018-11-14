@@ -74,3 +74,12 @@ class TestFileStorage(unittest.TestCase):
 
         self.assertGreater(post_objs_size, pre_objs_size)
         self.assertIn(base_key, post_objs)
+
+    def test_reload(self):
+        base = BaseModel()
+        storage.save()
+        base_key = "{}.{}".format(base.__class__.__name__, base.id)
+        storage.all().clear()
+        self.assertNotIn(base_key, storage.all())
+        storage.reload()
+        self.assertIn(base_key, storage.all())
