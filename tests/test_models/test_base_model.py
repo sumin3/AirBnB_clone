@@ -3,6 +3,8 @@
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
+from models import storage
+
 
 
 class TestBaseModel(unittest.TestCase):
@@ -27,6 +29,7 @@ class TestBaseModel(unittest.TestCase):
         del self.model2
         del self.model3
         del self.model2_dict
+        storage.save()
 
     def test_id(self):
         """id is string
