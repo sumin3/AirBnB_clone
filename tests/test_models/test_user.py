@@ -52,6 +52,7 @@ class TestUser(unittest.TestCase):
         self.assertFalse(hasattr(self.model2, 'invaid_attr'))
 
     def test_existing_atrr_datatype(self):
+        """ ensure first_name, last_name, email and password are present """
         self.assertEqual(type(self.model2.first_name), str)
         self.assertEqual(type(self.model2.last_name), str)
         self.assertEqual(type(self.model2.email), str)
@@ -93,15 +94,9 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.model2.my_number, 98)
 
     def test_updated_at(self):
+        """" gets my dates rights """
         self.assertGreater(self.model2.created_at, self.model1.created_at)
         self.assertGreater(self.model2.updated_at, self.model1.updated_at)
-
-        """"Test in file.json:
-        """
-        """model1.created_at : type string
-        """
-        """model1.updated_at: type string"
-        """
 
     def test_new_types(self):
         """test types of new attrs"""
@@ -189,6 +184,7 @@ class TestUser(unittest.TestCase):
         self.assertIn(user2_key, post_objs)
 
     def test_reload(self):
+        """" ensure storage reload works """
         user = User()
         user.save()
         user_key = "{}.{}".format(user.__class__.__name__, user.id)
@@ -198,6 +194,7 @@ class TestUser(unittest.TestCase):
         self.assertIn(user_key, storage.all())
 
     def test_init_kwargs(self):
+        """" ensure that kwargs are in new instance"""
         kwarg_dict = {'int': 1, 'float': 2.2, 'str': "3"}
         user = User(**kwarg_dict)
         self.assertEqual(user.int, 1)

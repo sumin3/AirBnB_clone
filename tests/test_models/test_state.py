@@ -47,6 +47,7 @@ class TestState(unittest.TestCase):
         self.assertFalse(hasattr(self.model2, 'invaid_attr'))
 
     def test_existing_atrr_datatype(self):
+        """ ensure name existence """
         self.assertEqual(type(self.model2.name), str)
 
     def test_id(self):
@@ -78,15 +79,9 @@ class TestState(unittest.TestCase):
         self.assertEqual(self.model2.my_number, 98)
 
     def test_updated_at(self):
+        """" gets my dates rights """
         self.assertGreater(self.model2.created_at, self.model1.created_at)
         self.assertGreater(self.model2.updated_at, self.model1.updated_at)
-
-        """"Test in file.json:
-        """
-        """model1.created_at : type string
-        """
-        """model1.updated_at: type string"
-        """
 
     def test_new_types(self):
         """test types of new attrs"""
@@ -162,6 +157,7 @@ class TestState(unittest.TestCase):
         self.assertIn(review2_key, post_objs)
 
     def test_reload(self):
+        """" ensure storage reload works """
         review = State()
         review.save()
         review_key = "{}.{}".format(review.__class__.__name__, review.id)
@@ -171,6 +167,7 @@ class TestState(unittest.TestCase):
         self.assertIn(review_key, storage.all())
 
     def test_init_kwargs(self):
+        """" ensure that kwargs are in new instance"""
         kwarg_dict = {'int': 1, 'float': 2.2, 'str': "3"}
         state = State(**kwarg_dict)
         self.assertEqual(state.int, 1)

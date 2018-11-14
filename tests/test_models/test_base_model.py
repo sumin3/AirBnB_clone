@@ -31,6 +31,7 @@ class TestBaseModel(unittest.TestCase):
         storage.save()
 
     def test_init_kwargs(self):
+        """" ensure storage reload works """
         d = {'a': 'v1', 'b': 1, 'c': 1.1}
         b = BaseModel(**d)
         self.assertTrue(hasattr(b, 'a'))
@@ -55,6 +56,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertFalse(hasattr(self.model1, 'invaid_attr'))
 
     def test_existing_atrr_datatype(self):
+        """ test if public attribute data types """
         self.assertEqual(type(self.model1.created_at), datetime)
         self.assertEqual(type(self.model1.updated_at), datetime)
         self.assertEqual(type(self.model1.id), str)
@@ -95,6 +97,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(self.model2.my_number, 98)
 
     def test_updated_at(self):
+        """test datetime """
         self.assertGreater(self.model2.created_at, self.model1.created_at)
         self.assertGreater(self.model2.updated_at, self.model1.updated_at)
 
@@ -168,6 +171,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn(base2_key, post_objs)
 
     def test_reload(self):
+        """" ensure storage reload works """
         base = BaseModel()
         base.save()
         base_key = "{}.{}".format(base.__class__.__name__, base.id)
