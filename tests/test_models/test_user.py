@@ -154,3 +154,22 @@ class TestUser(unittest.TestCase):
     def test_new_model_number(self):
         """ model3 and model2 have the same my_number value """
         self.assertEqual(self.model2.my_number, self.model3.my_number)
+
+    def test_first_name(self):
+        """ test user model first_name """
+        self.assertEqual(self.model1.first_name, "Betty")
+
+    def test_last_name(self):
+        """ test user model last_name """
+        self.assertEqual(self.model1.last_name, "Holberton")
+
+    def test_email(self):
+        """ test user model email """
+        self.assertEqual(self.model1.email, "airbnb@holbertonshool.com")
+
+    def test_password(self):
+        """ test user model password """
+        self.assertEqual(self.model1.password, "root")
+
+if __name__ == '__main__':
+    unittest.main()

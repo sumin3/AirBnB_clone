@@ -83,3 +83,6 @@ class TestFileStorage(unittest.TestCase):
         self.assertNotIn(base_key, storage.all())
         storage.reload()
         self.assertIn(base_key, storage.all())
+
+if __name__ == '__main__':
+    unittest.main()
