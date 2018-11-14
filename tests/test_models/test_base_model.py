@@ -4,7 +4,6 @@ import unittest
 from models.base_model import BaseModel
 from datetime import datetime
 from models import storage
-import os
 
 
 class TestBaseModel(unittest.TestCase):
@@ -143,6 +142,34 @@ class TestBaseModel(unittest.TestCase):
     def test_new_model_number(self):
         """ model3 and model2 have the same my_number value """
         self.assertEqual(self.model2.my_number, self.model3.my_number)
+
+    def test_save(self):
+        """ test save obj serialization """
+        base = BaseModel()
+        base.save()
+        with open("file.json", "r") as file:
+            pre_objs = file.read()
+        pre_objs_size = len(pre_objs)
+
+        base2 = BaseModel()
+        base2.save()
+        base2_key = "{}.{}".format(base2.__class__.__name__, base2.id)
+        with open("file.json", "r") as file:
+            post_objs = file.read()
+        post_objs_size = len(post_objs)
+
+        self.assertGreater(post_objs_size, pre_objs_size)
+        self.assertIn(base2_key, post_objs)
+
+    def test_reload(self):
+        base = BaseModel()
+        base.save()
+        base_key = "{}.{}".format(base.__class__.__name__, base.id)
+        storage.all().clear()
+        self.assertNotIn(base_key, storage.all())
+        storage.reload()
+        self.assertIn(base_key, storage.all())
+
 
 if __name__ == '__main__':
     unittest.main()
