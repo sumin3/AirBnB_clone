@@ -168,7 +168,11 @@ class HBNBCommand(cmd.Cmd):
     def default(self, args):
         arg_list = args.split()
         if '.' in arg_list[0]:
-            cmd_list = arg_list[0].split('.')
+            split_list = ['.', '(', ')']
+            for element in split_list:
+                if element in arg_list[0]:
+                    arg_list[0] = arg_list[0].replace(element, ' ')
+            cmd_list = arg_list[0].split()
             if len(cmd_list) < 2:
                 print('*** Unknown syntax:', cmd_list[0])
                 return False
@@ -178,10 +182,12 @@ class HBNBCommand(cmd.Cmd):
                     cmd_list[0], cmd_list[1]))
                 return False
 
-            if cmd_list[1] == 'count()':
+            if cmd_list[1] == 'count':
                 self.count_model_instance(cmd_list[0])
-            if cmd_list[1] == 'all()':
+            if cmd_list[1] == 'all':
                 self.do_all(cmd_list[0])
+            if cmd_list[1] == 'show':
+                self.do_show(cmd_list[0] + ' ' + cmd_list[2])
         else:
             super(HBNBCommand, self).default(args)
 
