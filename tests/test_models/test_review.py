@@ -164,6 +164,33 @@ class TestReview(unittest.TestCase):
         """ test user model text """
         self.assertEqual(self.model1.text, "holberton shool")
 
+    def test_save(self):
+        """ test save obj serialization """
+        review = Review()
+        review.save()
+        with open("file.json", "r") as file:
+            pre_objs = file.read()
+        pre_objs_size = len(pre_objs)
+
+        review2 = Review()
+        review2.save()
+        review2_key = "{}.{}".format(review2.__class__.__name__, review2.id)
+        with open("file.json", "r") as file:
+            post_objs = file.read()
+        post_objs_size = len(post_objs)
+
+        self.assertGreater(post_objs_size, pre_objs_size)
+        self.assertIn(review2_key, post_objs)
+
+    def test_reload(self):
+        review = Review()
+        review.save()
+        review_key = "{}.{}".format(review.__class__.__name__, review.id)
+        storage.all().clear()
+        self.assertNotIn(review_key, storage.all())
+        storage.reload()
+        self.assertIn(review_key, storage.all())
+
 
 if __name__ == '__main__':
     unittest.main()

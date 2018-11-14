@@ -171,5 +171,33 @@ class TestUser(unittest.TestCase):
         """ test user model password """
         self.assertEqual(self.model1.password, "root")
 
+    def test_save(self):
+        """ test save obj serialization """
+        user = User()
+        user.save()
+        with open("file.json", "r") as file:
+            pre_objs = file.read()
+        pre_objs_size = len(pre_objs)
+
+        user2 = User()
+        user2.save()
+        user2_key = "{}.{}".format(user2.__class__.__name__, user2.id)
+        with open("file.json", "r") as file:
+            post_objs = file.read()
+        post_objs_size = len(post_objs)
+
+        self.assertGreater(post_objs_size, pre_objs_size)
+        self.assertIn(user2_key, post_objs)
+
+    def test_reload(self):
+        user = User()
+        user.save()
+        user_key = "{}.{}".format(user.__class__.__name__, user.id)
+        storage.all().clear()
+        self.assertNotIn(user_key, storage.all())
+        storage.reload()
+        self.assertIn(user_key, storage.all())
+
+
 if __name__ == '__main__':
     unittest.main()
