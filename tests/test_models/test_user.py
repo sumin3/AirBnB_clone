@@ -4,7 +4,6 @@ import unittest
 from models.user import User
 from datetime import datetime
 from models import storage
-import os
 
 
 class TestUser(unittest.TestCase):
