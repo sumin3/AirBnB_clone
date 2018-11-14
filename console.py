@@ -165,6 +165,32 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, arg_list[2], arg_list[3])
             obj.save()
 
+    def default(self, args):
+        arg_list = args.split()
+        if '.' in arg_list[0]:
+            cmd_list = arg_list[0].split('.')
+            if len(cmd_list) < 2:
+                print('*** Unknown syntax:', cmd_list[0])
+                return False
+
+            if cmd_list[0] not in list(self.cls_dict.keys()):
+                print('*** Unknown syntax: {}.{}'.format(
+                    cmd_list[0], cmd_list[1]))
+                return False
+
+            if cmd_list[1] == 'count()':
+                self.count_model_instance(cmd_list[0])
+            if cmd_list[1] == 'all()':
+                self.do_all(cmd_list[0])
+        else:
+            super(HBNBCommand, self).default(args)
+
+    def count_model_instance(self, model):
+        all_objs = storage.all()
+        models = [v for v in all_objs.values() if type(
+            v) == self.cls_dict.get(model)]
+        print(len(models))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
