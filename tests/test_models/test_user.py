@@ -39,6 +39,14 @@ class TestUser(unittest.TestCase):
         all_objs.clear()
         storage.save()
 
+    def test_attr(self):
+        """test attr"""
+        model = User()
+        self.assertNotIn('email', model.__dict__)
+        self.assertNotIn('password', model.__dict__)
+        self.assertNotIn('first_name', model.__dict__)
+        self.assertNotIn('last_name', model.__dict__)
+
     def test_instance_class(self):
         """ test type of the created instance """
         self.assertIsInstance(self.model2, User)
