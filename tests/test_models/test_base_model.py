@@ -4,7 +4,7 @@ import unittest
 from models.base_model import BaseModel
 from datetime import datetime
 from models import storage
-
+import os
 
 
 class TestBaseModel(unittest.TestCase):
@@ -16,36 +16,43 @@ class TestBaseModel(unittest.TestCase):
         self.model1 = BaseModel()
         self.model1.name = "Holberton"
         self.model1.my_number = 89
+        self.model1.float = 1.1
+
         self.model2 = BaseModel()
         self.model2.name = "Betty"
         self.model2.my_number = 98
-        self.model1.float = 1.1
+
         self.model2_dict = self.model2.to_dict()
         self.model3 = BaseModel(**self.model2_dict)
 
     def tearDown(self):
         """ teardown tests """
-        del self.model1
-        del self.model2
-        del self.model3
-        del self.model2_dict
+        all_objs = storage.all()
+        all_objs.clear()
         storage.save()
 
-    def test_id(self):
-        """id is string
-        """
+    def test_instance_class(self):
+        """ test type of the created instance """
+        self.assertIsInstance(self.model1, BaseModel)
+
+    def test_attr_existence(self):
+        """ test if public attribute exist or not"""
+        self.assertTrue(hasattr(self.model1, 'id'))
+        self.assertTrue(hasattr(self.model1, 'updated_at'))
+        self.assertTrue(hasattr(self.model1, 'created_at'))
+        self.assertFalse(hasattr(self.model1, 'invaid_attr'))
+
+    def test_existing_atrr_datatype(self):
+        self.assertEqual(type(self.model1.created_at), datetime)
+        self.assertEqual(type(self.model1.updated_at), datetime)
         self.assertEqual(type(self.model1.id), str)
+
+    def test_id(self):
         """model1.id and model2.id are different
         """
         self.assertNotEqual(self.model1.id, self.model2.id)
-        """model1.created_at is type datetime
-        """
-    def test_created_at(self):
-        """model1.created_at is datetime
-        """
-        self.assertEqual(type(self.model1.created_at), datetime)
 
-    def test_name(self):
+    def test_new_attr_name(self):
         """model1.name is string
         """
         self.assertEqual(type(self.model1.name), str)
@@ -60,9 +67,10 @@ class TestBaseModel(unittest.TestCase):
         """model2.name is "Betty"
         """
         self.assertEqual(self.model2.name, "Betty")
-        """model1.my_number is int
+
+    def test_new_attr_my_number(self):
+        """model1.my_number is int type
         """
-    def test_number(self):
         self.assertEqual(type(self.model2.my_number), int)
         """model1.my_number is 89
         """
@@ -73,11 +81,12 @@ class TestBaseModel(unittest.TestCase):
         """model2.my_number is 98
         """
         self.assertEqual(self.model2.my_number, 98)
-        """model1.created_at < model1.updated_at
-        """
+
     def test_updated_at(self):
+        """sometimes updated_at and created_at will equal
         self.assertGreater(self.model1.updated_at, self.model1.created_at)
         self.assertGreater(self.model2.updated_at, self.model2.created_at)
+        """
         """self.model1.created_at < self.model2.created_at
         """
         self.assertGreater(self.model2.created_at, self.model1.created_at)
@@ -89,6 +98,7 @@ class TestBaseModel(unittest.TestCase):
         """
         """model1.updated_at: type string"
         """
+
     def test_new_types(self):
         """test types of new attrs"""
         self.assertEqual(type(self.model1.float), float)
@@ -107,9 +117,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(self.model2_dict), dict)
         """ tests to_dict for iso timeformat """
         created_at = self.model2_dict['created_at']
+        self.assertEqual(type(created_at), str)
         created_at = datetime.strptime(created_at, "%Y-%m-%dT%H:%M:%S.%f")
         self.assertEqual(type(created_at), datetime)
+
         updated_at = self.model2_dict['updated_at']
+        self.assertEqual(type(updated_at), str)
         updated_at = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f")
         self.assertEqual(type(updated_at), datetime)
 
@@ -136,3 +149,6 @@ class TestBaseModel(unittest.TestCase):
     def test_new_model_number(self):
         """ model3 and model2 have the same my_number value """
         self.assertEqual(self.model2.my_number, self.model3.my_number)
+
+if __name__ == '__main__':
+    unittest.main()
