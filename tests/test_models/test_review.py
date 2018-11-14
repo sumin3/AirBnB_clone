@@ -45,7 +45,14 @@ class TestReview(unittest.TestCase):
         all_objs.clear()
         storage.save()
 
-    def test_instance_class(self):
+    def test_attr(self):
+        """test attr"""
+        model = Review()
+        self.assertNotIn('place_id', model.__dict__)
+        self.assertNotIn('user_id', model.__dict__)
+        self.assertNotIn('text', model.__dict__)
+
+    def test_class(self):
         """ test type of the created instance """
         self.assertIsInstance(self.model2, Review)
 

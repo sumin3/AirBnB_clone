@@ -32,6 +32,11 @@ class TestAmenity(unittest.TestCase):
         all_objs.clear()
         storage.save()
 
+    def test_attr(self):
+        """test attr"""
+        model = Amenity()
+        self.assertNotIn('name', model.__dict__)
+
     def test_instance_class(self):
         """ test type of the created instance """
         self.assertIsInstance(self.model2, Amenity)

@@ -49,6 +49,21 @@ class TestPlace(unittest.TestCase):
         all_objs.clear()
         storage.save()
 
+    def test_attr(self):
+        """test attr"""
+        model = Place()
+        self.assertNotIn('city_id', model.__dict__)
+        self.assertNotIn('user_id', model.__dict__)
+        self.assertNotIn('name', model.__dict__)
+        self.assertNotIn('description', model.__dict__)
+        self.assertNotIn('number_rooms', model.__dict__)
+        self.assertNotIn('number_bathrooms', model.__dict__)
+        self.assertNotIn('max_guest', model.__dict__)
+        self.assertNotIn('price_by_night', model.__dict__)
+        self.assertNotIn('latitude', model.__dict__)
+        self.assertNotIn('longitude', model.__dict__)
+        self.assertNotIn('amenity_ids', model.__dict__)
+
     def test_instance_class(self):
         """ test type of the created instance """
         self.assertIsInstance(self.model2, Place)
