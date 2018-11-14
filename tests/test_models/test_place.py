@@ -4,7 +4,6 @@ import unittest
 from models.place import Place
 from datetime import datetime
 from models import storage
-import os
 
 
 class TestPlace(unittest.TestCase):
@@ -223,6 +222,14 @@ class TestPlace(unittest.TestCase):
         self.assertNotIn(place_key, storage.all())
         storage.reload()
         self.assertIn(place_key, storage.all())
+
+    def test_init_kwargs(self):
+        kwarg_dict = {'int': 1, 'float': 2.2, 'str': "3"}
+        place = Place(**kwarg_dict)
+        self.assertEqual(place.int, 1)
+        self.assertEqual(type(place.int), int)
+        self.assertEqual(type(place.float), float)
+        self.assertEqual(type(place.str), str)
 
 
 if __name__ == '__main__':

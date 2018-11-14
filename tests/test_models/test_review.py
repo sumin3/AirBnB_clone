@@ -190,6 +190,14 @@ class TestReview(unittest.TestCase):
         storage.reload()
         self.assertIn(review_key, storage.all())
 
+    def test_init_kwargs(self):
+        kwarg_dict = {'int': 1, 'float': 2.2, 'str': "3"}
+        review = Review(**kwarg_dict)
+        self.assertEqual(review.int, 1)
+        self.assertEqual(type(review.int), int)
+        self.assertEqual(type(review.float), float)
+        self.assertEqual(type(review.str), str)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -170,6 +170,14 @@ class TestAmenity(unittest.TestCase):
         storage.reload()
         self.assertIn(amenity_key, storage.all())
 
+    def test_init_kwargs(self):
+        kwarg_dict = {'int': 1, 'float': 2.2, 'str': "3"}
+        amenity = Amenity(**kwarg_dict)
+        self.assertEqual(amenity.int, 1)
+        self.assertEqual(type(amenity.int), int)
+        self.assertEqual(type(amenity.float), float)
+        self.assertEqual(type(amenity.str), str)
+
 
 if __name__ == '__main__':
     unittest.main()

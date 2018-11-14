@@ -170,6 +170,14 @@ class TestState(unittest.TestCase):
         storage.reload()
         self.assertIn(review_key, storage.all())
 
+    def test_init_kwargs(self):
+        kwarg_dict = {'int': 1, 'float': 2.2, 'str': "3"}
+        state = State(**kwarg_dict)
+        self.assertEqual(state.int, 1)
+        self.assertEqual(type(state.int), int)
+        self.assertEqual(type(state.float), float)
+        self.assertEqual(type(state.str), str)
+
 
 if __name__ == '__main__':
     unittest.main()

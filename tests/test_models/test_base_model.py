@@ -85,13 +85,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertGreater(self.model2.created_at, self.model1.created_at)
         self.assertGreater(self.model2.updated_at, self.model1.updated_at)
 
-        """"Test in file.json:
-        """
-        """model1.created_at : type string
-        """
-        """model1.updated_at: type string"
-        """
-
     def test_new_types(self):
         """test types of new attrs"""
         self.assertEqual(type(self.model1.float), float)

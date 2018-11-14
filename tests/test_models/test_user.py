@@ -197,6 +197,14 @@ class TestUser(unittest.TestCase):
         storage.reload()
         self.assertIn(user_key, storage.all())
 
+    def test_init_kwargs(self):
+        kwarg_dict = {'int': 1, 'float': 2.2, 'str': "3"}
+        user = User(**kwarg_dict)
+        self.assertEqual(user.int, 1)
+        self.assertEqual(type(user.int), int)
+        self.assertEqual(type(user.float), float)
+        self.assertEqual(type(user.str), str)
+
 
 if __name__ == '__main__':
     unittest.main()
