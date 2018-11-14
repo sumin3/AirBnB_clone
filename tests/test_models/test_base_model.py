@@ -30,6 +30,19 @@ class TestBaseModel(unittest.TestCase):
         all_objs.clear()
         storage.save()
 
+    def test_init_kwargs(self):
+        d = {'a': 'v1', 'b': 1, 'c': 1.1}
+        b = BaseModel(**d)
+        self.assertTrue(hasattr(b, 'a'))
+        self.assertTrue(hasattr(b, 'b'))
+        self.assertTrue(hasattr(b, 'c'))
+        self.assertEqual(type(b.a), str)
+        self.assertEqual(type(b.b), int)
+        self.assertEqual(type(b.c), float)
+        self.assertEqual(b.a, 'v1')
+        self.assertEqual(b.b, 1)
+        self.assertEqual(b.c, 1.1)
+
     def test_instance_class(self):
         """ test type of the created instance """
         self.assertIsInstance(self.model1, BaseModel)
