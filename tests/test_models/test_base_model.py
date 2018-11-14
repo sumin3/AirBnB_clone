@@ -83,12 +83,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(self.model2.my_number, 98)
 
     def test_updated_at(self):
-        """sometimes updated_at and created_at will equal
-        self.assertGreater(self.model1.updated_at, self.model1.created_at)
-        self.assertGreater(self.model2.updated_at, self.model2.created_at)
-        """
-        """self.model1.created_at < self.model2.created_at
-        """
         self.assertGreater(self.model2.created_at, self.model1.created_at)
         self.assertGreater(self.model2.updated_at, self.model1.updated_at)
 
