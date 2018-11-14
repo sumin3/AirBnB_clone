@@ -64,6 +64,7 @@ class TestReview(unittest.TestCase):
         self.assertFalse(hasattr(self.model2, 'invaid_attr'))
 
     def test_existing_atrr_datatype(self):
+        """ test req attr data types """
         self.assertEqual(type(self.model2.place_id), str)
         self.assertEqual(type(self.model2.user_id), str)
         self.assertEqual(type(self.model2.text), str)
@@ -97,15 +98,9 @@ class TestReview(unittest.TestCase):
         self.assertEqual(self.model2.my_number, 98)
 
     def test_updated_at(self):
+        """test datetime """
         self.assertGreater(self.model2.created_at, self.model1.created_at)
         self.assertGreater(self.model2.updated_at, self.model1.updated_at)
-
-        """"Test in file.json:
-        """
-        """model1.created_at : type string
-        """
-        """model1.updated_at: type string"
-        """
 
     def test_new_types(self):
         """test types of new attrs"""
@@ -189,6 +184,7 @@ class TestReview(unittest.TestCase):
         self.assertIn(review2_key, post_objs)
 
     def test_reload(self):
+        """" ensure storage reload works """
         review = Review()
         review.save()
         review_key = "{}.{}".format(review.__class__.__name__, review.id)
@@ -196,6 +192,15 @@ class TestReview(unittest.TestCase):
         self.assertNotIn(review_key, storage.all())
         storage.reload()
         self.assertIn(review_key, storage.all())
+
+    def test_init_kwargs(self):
+        """" ensure that kwargs are in new instance"""
+        kwarg_dict = {'int': 1, 'float': 2.2, 'str': "3"}
+        review = Review(**kwarg_dict)
+        self.assertEqual(review.int, 1)
+        self.assertEqual(type(review.int), int)
+        self.assertEqual(type(review.float), float)
+        self.assertEqual(type(review.str), str)
 
 
 if __name__ == '__main__':

@@ -4,7 +4,6 @@ import unittest
 from models.amenity import Amenity
 from datetime import datetime
 from models import storage
-import os
 
 
 class TestAmenity(unittest.TestCase):
@@ -48,6 +47,7 @@ class TestAmenity(unittest.TestCase):
         self.assertFalse(hasattr(self.model2, 'invaid_attr'))
 
     def test_existing_atrr_datatype(self):
+        """" amenities should have names str """
         self.assertEqual(type(self.model2.name), str)
 
     def test_id(self):
@@ -89,13 +89,6 @@ class TestAmenity(unittest.TestCase):
         """test datetime """
         self.assertGreater(self.model2.created_at, self.model1.created_at)
         self.assertGreater(self.model2.updated_at, self.model1.updated_at)
-
-        """"Test in file.json:
-        """
-        """model1.created_at : type string
-        """
-        """model1.updated_at: type string"
-        """
 
     def test_new_types(self):
         """test types of new attrs"""
@@ -167,6 +160,7 @@ class TestAmenity(unittest.TestCase):
         self.assertIn(amenity_key, post_objs)
 
     def test_reload(self):
+        """" ensure storage reload works """
         amenity = Amenity()
         storage.save()
         amenity_key = "{}.{}".format(amenity.__class__.__name__, amenity.id)
@@ -174,6 +168,15 @@ class TestAmenity(unittest.TestCase):
         self.assertNotIn(amenity_key, storage.all())
         storage.reload()
         self.assertIn(amenity_key, storage.all())
+
+    def test_init_kwargs(self):
+        """" ensure that kwargs are in new instance"""
+        kwarg_dict = {'int': 1, 'float': 2.2, 'str': "3"}
+        amenity = Amenity(**kwarg_dict)
+        self.assertEqual(amenity.int, 1)
+        self.assertEqual(type(amenity.int), int)
+        self.assertEqual(type(amenity.float), float)
+        self.assertEqual(type(amenity.str), str)
 
 
 if __name__ == '__main__':

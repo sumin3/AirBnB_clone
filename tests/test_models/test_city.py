@@ -4,7 +4,6 @@ import unittest
 from models.city import City
 from datetime import datetime
 from models import storage
-import os
 
 
 class TestCity(unittest.TestCase):
@@ -183,6 +182,14 @@ class TestCity(unittest.TestCase):
         self.assertNotIn(city_key, storage.all())
         storage.reload()
         self.assertIn(city_key, storage.all())
+
+    def test_init_kwargs(self):
+        kwarg_dict = {'int': 1, 'float': 2.2, 'str': "3"}
+        city = City(**kwarg_dict)
+        self.assertEqual(city.int, 1)
+        self.assertEqual(type(city.int), int)
+        self.assertEqual(type(city.float), float)
+        self.assertEqual(type(city.str), str)
 
 
 if __name__ == '__main__':

@@ -4,7 +4,6 @@ import unittest
 from models.place import Place
 from datetime import datetime
 from models import storage
-import os
 
 
 class TestPlace(unittest.TestCase):
@@ -85,6 +84,7 @@ class TestPlace(unittest.TestCase):
         self.assertFalse(hasattr(self.model2, 'invaid_attr'))
 
     def test_existing_atrr_datatype(self):
+        """ test req attr data types """
         self.assertEqual(type(self.model2.city_id), str)
         self.assertEqual(type(self.model2.user_id), str)
         self.assertEqual(type(self.model2.name), str)
@@ -98,6 +98,7 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(type(self.model2.amenity_ids), list)
 
     def test_existing_atrr_value(self):
+        """ test req attr data values """
         self.assertEqual(self.model2.city_id, 'root')
         self.assertEqual(self.model2.user_id, "userid")
         self.assertEqual(self.model2.name, "Betty")
@@ -149,13 +150,6 @@ class TestPlace(unittest.TestCase):
         """test datetime """
         self.assertGreater(self.model2.created_at, self.model1.created_at)
         self.assertGreater(self.model2.updated_at, self.model1.updated_at)
-
-        """"Test in file.json:
-        """
-        """model1.created_at : type string
-        """
-        """model1.updated_at: type string"
-        """
 
     def test_latitude(self):
         """test types of new attrs"""
@@ -231,6 +225,7 @@ class TestPlace(unittest.TestCase):
         self.assertIn(place_key, post_objs)
 
     def test_reload(self):
+        """" ensure storage reload works """
         place = Place()
         place.save()
         place_key = "{}.{}".format(place.__class__.__name__, place.id)
@@ -238,6 +233,15 @@ class TestPlace(unittest.TestCase):
         self.assertNotIn(place_key, storage.all())
         storage.reload()
         self.assertIn(place_key, storage.all())
+
+    def test_init_kwargs(self):
+        """" ensure that kwargs are in new instance"""
+        kwarg_dict = {'int': 1, 'float': 2.2, 'str': "3"}
+        place = Place(**kwarg_dict)
+        self.assertEqual(place.int, 1)
+        self.assertEqual(type(place.int), int)
+        self.assertEqual(type(place.float), float)
+        self.assertEqual(type(place.str), str)
 
 
 if __name__ == '__main__':
