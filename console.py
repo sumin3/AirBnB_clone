@@ -168,11 +168,11 @@ class HBNBCommand(cmd.Cmd):
     def default(self, args):
         arg_list = args.split()
         if '.' in arg_list[0]:
-            split_list = ['.', '(', ')', ',']
+            split_list = ['.', '(', ')', ',', '"', "'"]
             for element in split_list:
-                if element in arg_list[0]:
-                    arg_list[0] = arg_list[0].replace(element, ' ')
-            cmd_list = arg_list[0].split()
+                if element in args:
+                    args = args.replace(element, ' ')
+            cmd_list = args.split()
             if len(cmd_list) < 2:
                 print('*** Unknown syntax:', cmd_list[0])
                 return False
@@ -190,6 +190,9 @@ class HBNBCommand(cmd.Cmd):
                 self.do_show(cmd_list[0] + ' ' + cmd_list[2])
             if cmd_list[1] == 'destroy':
                 self.do_show(cmd_list[0] + ' ' + cmd_list[2])
+            if cmd_list[1] == 'update':
+                self.do_update(cmd_list[0] + ' ' + cmd_list[
+                    2] + ' ' + cmd_list[3] + ' ' + cmd_list[4])
 
         else:
             super(HBNBCommand, self).default(args)
