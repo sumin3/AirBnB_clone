@@ -204,7 +204,7 @@ class HBNBCommand(cmd.Cmd):
             if cmd_list[1] == 'show':
                 self.do_show(cmd_list[0] + ' ' + cmd_list[2])
             if cmd_list[1] == 'destroy':
-                self.do_show(cmd_list[0] + ' ' + cmd_list[2])
+                self.do_destroy(cmd_list[0] + ' ' + cmd_list[2])
             if cmd_list[1] == 'update':
                 self.do_update(cmd_list[0] + ' ' + cmd_list[
                     2] + ' ' + cmd_list[3] + ' ' + cmd_list[4])
