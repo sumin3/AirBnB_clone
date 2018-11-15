@@ -4,8 +4,6 @@ learn how to build a full web application: the 'AirBnB clone'
 
 ## Coding style
 - All python files are interpreted/compiled on Ubuntu 14.04 LTS using python3 (version 3.4.3) and use the [PEP 8 style (version 1.7.*)](https://github.com/PyCQA/pycodestyle) for checking coding style
-- All text files are executable with exactly two lines long and are tested on Ubuntu 14.04 LTS
-- All C files are compiled on Ubuntu 14.04 LTS and using [Betty Style](https://github.com/holbertonschool/Betty) for checking coding and documentation styles.
 
 ## Getting started
 To use, first download this repository into your local machine by issuing the following command in your local terminal. 
@@ -21,8 +19,8 @@ $./console.py
 ## Command
 command | desc
 --- | ---
-create (class name) | create a new instance/object
+create \<class name\> | create a new instance/object
 all | display all the object
-all (class Name) | display all the object of the class
-show (class Name) <id> | display the object of the id
+all \<class Name\> | display all the object of the class
+show \<class Name\> \<id\> | display the object of the id
 update (class Name) (id) (attr name) (attr value) | update the object
