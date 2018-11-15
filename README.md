@@ -21,8 +21,8 @@ $./console.py
 ## Command
 command | desc
 --- | ---
-create <class name> | create a new instance/object
+create (class name) | create a new instance/object
 all | display all the object
-all <class Name> | display all the object of the class
-show <class Name> <id> | display the object of the id
-update <class Name> <id> <attr name> <attr value> | update the object
+all (class Name) | display all the object of the class
+show (class Name) <id> | display the object of the id
+update (class Name) (id) (attr name) (attr value) | update the object
