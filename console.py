@@ -153,7 +153,16 @@ class HBNBCommand(cmd.Cmd):
             obj = all_objs.get(key)
             if hasattr(obj, arg_list[2]):
                 type_attr = type(getattr(obj, arg_list[2]))
-                setattr(obj, arg_list[2], type_attr(arg_list[3]))
+                if type_attr is not str:
+                    setattr(obj, arg_list[2], type_attr(arg_list[3]))
+                else:
+                    fst = arg_list[3][0]
+                    lst = arg_list[3][-1]
+                    if (fst == '"' and lst == '"'):
+                        arg_list[3] = arg_list[3].strip('\"')
+                    elif (fst == "'" and lst == "'"):
+                        arg_list[3] = arg_list[3].strip("\'")
+                    setattr(obj, arg_list[2], arg_list[3])
             else:
                 try:
                     arg_list[3] = int(arg_list[3])
@@ -161,7 +170,13 @@ class HBNBCommand(cmd.Cmd):
                     try:
                         arg_list[3] = float(arg_list[3])
                     except ValueError:
-                        pass
+                        fst = arg_list[3][0]
+                        lst = arg_list[3][-1]
+                        if (fst == '"' and lst == '"'):
+                            arg_list[3] = arg_list[3].strip('\"')
+                        elif (fst == "'" and lst == "'"):
+                            arg_list[3] = arg_list[3].strip("\'")
+
                 setattr(obj, arg_list[2], arg_list[3])
             obj.save()
 
