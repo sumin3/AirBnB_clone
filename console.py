@@ -183,7 +183,7 @@ class HBNBCommand(cmd.Cmd):
     def default(self, args):
         arg_list = args.split()
         if '.' in arg_list[0]:
-            split_list = ['.', '(', ')', ',', '"', "'"]
+            split_list = ['.', '(', ')', ',', '"', "'", ":", "{", "}"]
             for element in split_list:
                 if element in args:
                     args = args.replace(element, ' ')
@@ -206,8 +206,11 @@ class HBNBCommand(cmd.Cmd):
             if cmd_list[1] == 'destroy':
                 self.do_show(cmd_list[0] + ' ' + cmd_list[2])
             if cmd_list[1] == 'update':
-                self.do_update(cmd_list[0] + ' ' + cmd_list[
-                    2] + ' ' + cmd_list[3] + ' ' + cmd_list[4])
+                key = 3
+                while(key != len(cmd_list)):
+                    self.do_update(cmd_list[0] + ' ' + cmd_list[
+                        2] + ' ' + cmd_list[key] + ' ' + cmd_list[key + 1])
+                    key = key + 2
 
         else:
             super(HBNBCommand, self).default(args)
