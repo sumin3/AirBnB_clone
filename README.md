@@ -19,15 +19,19 @@ $./console.py
 ## Command
 command | desc
 --- | ---
+help | display help information
+quit | exit the program
+Ctrl+D | exit the program
 create \<class Name\> | create a new instance/object
 all | Prints all string representation of all instances
 all \<class Name\> | Prints all string representation of all instances based on the class name
 \<class Name\>.all() | display all the object of the class
 show \<class Name\> \<id\> | Prints the string representation of an instance based on the class name and id
 \<class Name\>.show(\<id\>) | Prints the string representation of an instance based on the class name and id
-destroy \<class Name\> \<id\> | Prints the string representation of an instance based on the classame and id
-\<class Name\>.destroy(\<id\>) | Prints the string representation of an instance based on the classame and id
+destroy \<class Name\> \<id\> | Deletes an instance based on the class name and id
+\<class Name\>.destroy(\<id\>) | Deletes an instance based on the class name and id
 update \<class Name\> \<id\> \<attr name\> \<attr value\> | Updates an instance based on the class name and id by adding or updating attribute
 \<class Name\>.update(\<id\>, \<attr name\>, "\<attr value\>") | Updates an instance based on the class name and id by adding or updating attribute
 \<class Name\>.update(\<id\>, {\<attr name\>: "\<attr value\>", \<attr name\>: "\<attr value\>"}) | Updates an instance based on the class name and id with dictionary
+\<class name\>.count() | retrieve the number of instances of a class
 
