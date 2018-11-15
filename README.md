@@ -19,8 +19,15 @@ $./console.py
 ## Command
 command | desc
 --- | ---
-create \<class name\> | create a new instance/object
-all | display all the object
-all \<class Name\> | display all the object of the class
-show \<class Name\> \<id\> | display the object of the id
-update (class Name) (id) (attr name) (attr value) | update the object
+create \<class Name\> | create a new instance/object
+all | Prints all string representation of all instances
+all \<class Name\> | Prints all string representation of all instances based on the class name
+\<class Name\>.all() | display all the object of the class
+show \<class Name\> \<id\> | Prints the string representation of an instance based on the class name and id
+\<class Name\>.show(\<id\>) | Prints the string representation of an instance based on the class name and id
+destroy \<class Name\> \<id\> | Prints the string representation of an instance based on the class n\
+ame and id
+update \<class Name\> \<id\> \<attr name\> \<attr value\> | Updates an instance based on the class name and id by adding or updating attribute
+\<class Name\>.update(\<id\>, \<attr name\>, "\<attr value\>") | Updates an instance based on the class name and id by adding or updating attribute
+\<class Name\>.update(\<id\>, {\<attr name\>: "\<attr value\>", \<attr name\>: "\<attr value\>"}) | Updates an instance based on the class name and id with dictionary
+
