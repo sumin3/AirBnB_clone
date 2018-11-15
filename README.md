@@ -26,6 +26,7 @@ all \<class Name\> | Prints all string representation of all instances based on 
 show \<class Name\> \<id\> | Prints the string representation of an instance based on the class name and id
 \<class Name\>.show(\<id\>) | Prints the string representation of an instance based on the class name and id
 destroy \<class Name\> \<id\> | Prints the string representation of an instance based on the classame and id
+\<class Name\>.destroy(\<id\>) | Prints the string representation of an instance based on the classame and id
 update \<class Name\> \<id\> \<attr name\> \<attr value\> | Updates an instance based on the class name and id by adding or updating attribute
 \<class Name\>.update(\<id\>, \<attr name\>, "\<attr value\>") | Updates an instance based on the class name and id by adding or updating attribute
 \<class Name\>.update(\<id\>, {\<attr name\>: "\<attr value\>", \<attr name\>: "\<attr value\>"}) | Updates an instance based on the class name and id with dictionary
