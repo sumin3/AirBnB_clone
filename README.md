@@ -12,3 +12,17 @@ To use, first download this repository into your local machine by issuing the fo
 ```
 git clone https://github.com/thrownblown/AirBnB_clone.git
 ```
+## Usage Examples
+```
+$./console.py 
+(hbnb) <command>
+```
+
+## Command
+command | desc
+--- | ---
+create <class name> | create a new instance/object
+all | display all the object
+all <class Name> | display all the object of the class
+show <class Name> <id> | display the object of the id
+update <class Name> <id> <attr name> <attr value> | update the object
