@@ -2,6 +2,8 @@
 """ console module """
 
 import cmd
+import re
+from shlex import shlex
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
@@ -134,34 +136,33 @@ class HBNBCommand(cmd.Cmd):
             args: a string in format: <className> <id> <attribute name>
         "<attribute value>"
         """
-        arg_list = args.split()
+        arg_list = args.split(" ", 3)
         all_objs = storage.all()
+
+        if len(arg_list) > 1:
+            key = "{}.{}".format(arg_list[0], arg_list[1].strip("'\""))
         if not args:
             print("** class name missing **")
         elif arg_list[0] not in self.cls_dict:
             print("** class doesn't exist **")
         elif len(arg_list) == 1:
             print("** instance id missing **")
-        elif "{}.{}".format(arg_list[0], arg_list[1]) not in all_objs:
+        elif key not in all_objs:
             print("** no instance found **")
         elif len(arg_list) == 2:
             print("** attribute name missing **")
         elif len(arg_list) == 3:
             print("** value missing **")
         else:
-            key = "{}.{}".format(arg_list[0], arg_list[1])
             obj = all_objs.get(key)
+            arg_list[3] = list(shlex(arg_list[3]))[0]
+            arg_list[2] = arg_list[2].strip("'\"")
             if hasattr(obj, arg_list[2]):
                 type_attr = type(getattr(obj, arg_list[2]))
                 if type_attr is not str:
                     setattr(obj, arg_list[2], type_attr(arg_list[3]))
                 else:
-                    fst = arg_list[3][0]
-                    lst = arg_list[3][-1]
-                    if (fst == '"' and lst == '"'):
-                        arg_list[3] = arg_list[3].strip('\"')
-                    elif (fst == "'" and lst == "'"):
-                        arg_list[3] = arg_list[3].strip("\'")
+                    arg_list[3] = arg_list[3].strip("'\"")
                     setattr(obj, arg_list[2], arg_list[3])
             else:
                 try:
@@ -170,50 +171,35 @@ class HBNBCommand(cmd.Cmd):
                     try:
                         arg_list[3] = float(arg_list[3])
                     except ValueError:
-                        fst = arg_list[3][0]
-                        lst = arg_list[3][-1]
-                        if (fst == '"' and lst == '"'):
-                            arg_list[3] = arg_list[3].strip('\"')
-                        elif (fst == "'" and lst == "'"):
-                            arg_list[3] = arg_list[3].strip("\'")
-
+                        arg_list[3] = arg_list[3].strip("'\"")
                 setattr(obj, arg_list[2], arg_list[3])
             obj.save()
 
     def default(self, args):
-        arg_list = args.split()
-        if '.' in arg_list[0]:
-            split_list = ['.', '(', ')', ',', '"', "'", ":", "{", "}"]
-            for element in split_list:
-                if element in args:
-                    args = args.replace(element, ' ')
-            cmd_list = args.split()
-            if len(cmd_list) < 2:
-                print('*** Unknown syntax:', cmd_list[0])
-                return False
-
-            if cmd_list[0] not in list(self.cls_dict.keys()):
-                print('*** Unknown syntax: {}.{}'.format(
-                    cmd_list[0], cmd_list[1]))
-                return False
-
-            if cmd_list[1] == 'count':
-                self.count_model_instance(cmd_list[0])
-            if cmd_list[1] == 'all':
-                self.do_all(cmd_list[0])
-            if cmd_list[1] == 'show':
-                self.do_show(cmd_list[0] + ' ' + cmd_list[2])
-            if cmd_list[1] == 'destroy':
-                self.do_destroy(cmd_list[0] + ' ' + cmd_list[2])
-            if cmd_list[1] == 'update':
-                key = 3
-                while(key != len(cmd_list)):
-                    self.do_update(cmd_list[0] + ' ' + cmd_list[
-                        2] + ' ' + cmd_list[key] + ' ' + cmd_list[key + 1])
-                    key = key + 2
-
-        else:
-            super(HBNBCommand, self).default(args)
+        cmd_list = re.split('[.(),:{}]', args)
+        cmd_list = [e.strip() for e in cmd_list]
+        cmd_list = [e for e in cmd_list if e != ""]
+        if len(cmd_list) < 2:
+            print('*** Unknown syntax:', cmd_list[0])
+            return False
+        if cmd_list[0] not in list(self.cls_dict.keys()):
+            print('*** Unknown syntax: {}.{}'.format(
+                cmd_list[0], cmd_list[1]))
+            return False
+        if cmd_list[1] == 'count':
+            self.count_model_instance(cmd_list[0])
+        if cmd_list[1] == 'all':
+            self.do_all(cmd_list[0])
+        if cmd_list[1] == 'show':
+            self.do_show(cmd_list[0] + ' ' + cmd_list[2])
+        if cmd_list[1] == 'destroy':
+            self.do_destroy(cmd_list[0] + ' ' + cmd_list[2])
+        if cmd_list[1] == 'update':
+            key = 3
+            while(key != len(cmd_list)):
+                self.do_update(" ".join([cmd_list[0], cmd_list[
+                    2], cmd_list[key], cmd_list[key + 1]]))
+                key = key + 2
 
     def count_model_instance(self, model):
         all_objs = storage.all()
