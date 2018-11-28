@@ -52,3 +52,9 @@ article h2{
 .number_bathrooms{
     background-image: url("../images/icon_bath.png"); 
 }
+.user {
+    text-align: left;
+}
+.description{
+    text-align: left;
+}
