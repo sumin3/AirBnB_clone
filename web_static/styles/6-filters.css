@@ -23,13 +23,9 @@ section.filters button:hover {
     opacity:0.9;
 }
 section.filters div.locations{
-    height: 100%;
-    width: 25%;
     border-right: 1px solid #DDDDDD;
-    float: left;
-    position: relative;
 }
-section.filters div.amenities{
+section.filters div.locations, section.filters div.amenities{
     height: 100%;
     width: 25%;
     float: left;
@@ -44,6 +40,13 @@ h4 {
     font-size: 14px;
     margin: 5px 40px 19px;
 }
+ul.popover li h2{
+    margin: 15px 20px 0px;
+}
+ul.popover li p{
+    margin: 5px;
+    text-indent: 35px;
+}
 div.locations ul.popover, div.amenities ul.popover{
     display: none;
     border: 1px solid #DDDDDD;
@@ -52,12 +55,12 @@ div.locations ul.popover, div.amenities ul.popover{
     background-color: #FAFAFA;
     list-style-type: none;
     margin-top: 0px;
-    padding: 30px;
+    padding: 15px 0px 40px 0px;
     width: 100%;
     z-index: 1;
+    margin-left: -1px;
 }
 
 div.locations:hover .popover, div.amenities:hover .popover{
     display: list-item;
-
 }
