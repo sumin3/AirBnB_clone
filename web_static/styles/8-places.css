@@ -1,5 +1,5 @@
 .places{
-    text-align: center; 
+    text-align: center;
 }
 .places h1{
     font-size: 30px;
@@ -12,11 +12,14 @@ article{
     border: 1px solid #FF5A5F;
     border-radius: 4px;
     display: inline-block;
+    height: 400px;
+    vertical-align: top;
 }
 article h2{
     font-size: 30px;
     text-align: center;
     display: inline-block;
+    margin: 5px 0px 45px;
 }
 .price_by_night{
     color: #FF5A5F;
@@ -25,8 +28,8 @@ article h2{
     min-width: 60px;
     height: 60px;
     font-size: 30px;
-    float: right;
     line-height: 60px;
+    float: right;
 }
 .information{
     height: 80px;
@@ -54,6 +57,12 @@ article h2{
 }
 .user {
     text-align: left;
+}
+.user p{
+    margin: 20px 0px 5px;
+}
+.user b{
+    margin-right: 3px;
 }
 .description{
     text-align: left;
