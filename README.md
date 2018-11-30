@@ -54,5 +54,5 @@ update \<class Name\> \<id\> \<attr name\> \<attr value\> | Updates an instance 
 \<class name\>.count() | retrieve the number of instances of a class
 
 ## Author
-Sumin Yu - [Twitter: @3_sumin](https://twitter.com/3_sumin)
-Alex Farioletti - [Twitter: @ThrownBlown](https://twitter.com/ThrownBlown)
+-Sumin Yu - [Twitter: @3_sumin](https://twitter.com/3_sumin)
+-Alex Farioletti - [Twitter: @ThrownBlown](https://twitter.com/ThrownBlown)
