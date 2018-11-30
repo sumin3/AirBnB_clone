@@ -7,6 +7,7 @@ Higher-level programming ― AirBnB clone
 * [Purpose](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Purpose)
 * [Coding style](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Coding-style)
 * [Files](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Files)
+* [Example](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Example)
 * [Author](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#author)
 
 ## Purpose
@@ -31,7 +32,7 @@ Higher-level programming ― AirBnB clone
 |  9. Full details | [100-index.html](100-index.html) <br />[styles/4-common.css](styles/4-common.css) <br />[styles/3-header.css](styles/3-header.css)<br /> [styles/3-footer.css](styles/3-footer.css) <br />[styles/6-filters.css](styles/6-filters.css) <br />[styles/100-places.css](styles/100-places.css) | based on 8-index.html, add more information to a Place article: <br />1. List of Amenities <br />2. List of Reviews
 | 10. Flex | [101-index.html](101-index.html) <br />[styles/4-common.css](styles/4-common.css) <br />[styles/3-header.css](styles/3-header.css) <br />[styles/3-footer.css](styles/3-footer.css) <br />[styles/6-filters.css](styles/6-filters.css) <br />[styles/101-places.css](styles/101-places.css) | Improve the Places section by using Flexible boxes for all Place articles
 
-## example
+## Example
 <img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/268/8-index.png">
 <img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/268/100-index.png">
 
