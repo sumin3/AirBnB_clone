@@ -10,6 +10,7 @@ Higher-level programming ― AirBnB clone
 * [Usage](https://github.com/sumin3/AirBnB_clone#usage)
 * [Usage Example](https://github.com/sumin3/AirBnB_clone#Usage-Example)
 * [Command](https://github.com/sumin3/AirBnB_clone#Command)
+* [File](https://github.com/sumin3/AirBnB_clone#File)
 * [Author](https://github.com/sumin3/AirBnB_clone#author)
 ## Purpose
 learn how to build a full web application: the 'AirBnB clone'
@@ -52,6 +53,10 @@ update \<class Name\> \<id\> \<attr name\> \<attr value\> | Updates an instance 
 \<class Name\>.update(\<id\>, \<attr name\>, "\<attr value\>") | Updates an instance based on the class name and id by adding or updating attribute
 \<class Name\>.update(\<id\>, {\<attr name\>: "\<attr value\>", \<attr name\>: "\<attr value\>"}) | Updates an instance based on the class name and id with dictionary
 \<class name\>.count() | retrieve the number of instances of a class
+
+## File
+#### Root directory:
+[Purpose](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Purpose)
 
 ## Author
 - Sumin Yu - [Twitter: @3_sumin](https://twitter.com/3_sumin)
