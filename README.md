@@ -24,10 +24,16 @@ To use, first download this repository into your local machine by issuing the fo
 git clone https://github.com/thrownblown/AirBnB_clone.git
 ```
 ## Usage 
+#### Interactive Mode
 ```
 $./console.py 
 (hbnb) <command>
 ```
+#### Non-Interactive Mode
+```
+$ echo "<command>" | ./console.py
+```
+
 ## Usage Example
 ```
 $./console.py 
@@ -55,8 +61,12 @@ update \<class Name\> \<id\> \<attr name\> \<attr value\> | Updates an instance 
 \<class name\>.count() | retrieve the number of instances of a class
 
 ## File
-#### Root directory:
-[Purpose](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Purpose)
+|    Directory | File Hierarchy |   Description  |
+|------------|-----------------|-------------
+| root | [console.py](console.py)                                        | The main console file     
+| models | [click this to see the models Files description](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Files) | The second step of the AirBnB Clone project - build the front end step-by-step
+| tests | [click this to see the tests Files description](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Files) | The second step of the AirBnB Clone project - build the front end step-by-step
+| web_static | [click this to see the web_static Files description](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Files) | The second step of the AirBnB Clone project - build the front end step-by-step
 
 ## Author
 - Sumin Yu - [Twitter: @3_sumin](https://twitter.com/3_sumin)
