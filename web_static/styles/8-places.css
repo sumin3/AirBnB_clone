@@ -15,11 +15,17 @@ article{
     height: 400px;
     vertical-align: top;
 }
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+}
 article h2{
+    width:100%;
     font-size: 30px;
-    text-align: center;
-    display: inline-block;
-    margin: 5px 0px 45px;
+    margin-top: 0px;
+    position: absolute;
 }
 .price_by_night{
     color: #FF5A5F;
@@ -29,7 +35,7 @@ article h2{
     height: 60px;
     font-size: 30px;
     line-height: 60px;
-    float: right;
+    margin-left: auto;
 }
 .information{
     height: 80px;
