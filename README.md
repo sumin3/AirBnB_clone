@@ -27,7 +27,7 @@ git clone https://github.com/thrownblown/AirBnB_clone.git
 $./console.py 
 (hbnb) <command>
 ```
-## Usage Examples
+## Usage Example
 ```
 $./console.py 
 (hbnb) all BaseModel
