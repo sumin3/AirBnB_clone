@@ -32,6 +32,7 @@ Higher-level programming ― AirBnB clone
 | 10. Flex | [101-index.html](101-index.html) <br />[styles/4-common.css](styles/4-common.css) <br />[styles/3-header.css](styles/3-header.css) <br />[styles/3-footer.css](styles/3-footer.css) <br />[styles/6-filters.css](styles/6-filters.css) <br />[styles/101-places.css](styles/101-places.css) | Improve the Places section by using Flexible boxes for all Place articles
 
 ## example
+<img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/268/8-index.png">
 <img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/268/100-index.png">
 
 
