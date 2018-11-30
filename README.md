@@ -64,9 +64,9 @@ update \<class Name\> \<id\> \<attr name\> \<attr value\> | Updates an instance 
 |    Directory | File Hierarchy |   Description  |
 |------------|-----------------|-------------
 | root | [console.py](console.py)                                        | The main console file     
-| models | [click this to see the models Files description](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Files) | This directory contains all the class and subclass modules.
-| tests | [click this to see the tests Files description](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Files) | This directory contains unit tests files for testing all files in [models](models)
-| web_static | [click this to see the web_static Files description](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Files) | The second step of the AirBnB Clone project - build the front end step-by-step
+| models | [click this to see the file description of models](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Files) | This directory contains all the class and subclass modules.
+| tests | [click this to see the file description of tests](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Files) | This directory contains unit tests files for testing all files in [models](models)
+| web_static | [click this to see the file description of web_static](https://github.com/sumin3/AirBnB_clone/tree/master/web_static#Files) | The second step of the AirBnB Clone project - build the front end step-by-step
 
 ## Author
 - Sumin Yu - [Twitter: @3_sumin](https://twitter.com/3_sumin)
