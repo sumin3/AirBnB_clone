@@ -18,7 +18,7 @@ Higher-level programming ― AirBnB clone
 
 ## Files
 |Tasks| File Hierarchy  | Description 
-|---|----|-----
+|---------|----------|-----
 | 0. Inline styling | [0-index.html](0-index.html) | Write an HTML page that displays a header and a footer.
 | 1. Head styling | [1-index.html](1-index.html) | Write an HTML page that displays a header and a footer by using the style tag in the head tag (same as 0-index.html)
 | 2. CSS files | [2-index.html](2-index.html) <br />[styles/2-common.css](styles/2-common.css)<br /> [styles/2-header.css](styles/2-header.css)<br />[styles/2-footer.css](styles/2-footer.css)| Write an HTML page that displays a header and a footer by using CSS files (same as 1-index.html)
