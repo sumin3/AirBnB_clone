@@ -17,7 +17,7 @@ Higher-level programming ― AirBnB clone
 - All style css file are in css.
 
 ## Files
-|    Tasks  <img width=200/> | File Hierarchy <img width=200/> |   Description <img width=800/> |
+|    Tasks  <img width=200/> | File Hierarchy <img width=200/> |   Description <img width=500/> |
 |------------|-----------------|-------------
 | 0. Inline styling | [0-index.html](0-index.html) | Write an HTML page that displays a header and a footer.
 | 1. Head styling | [1-index.html](1-index.html) | Write an HTML page that displays a header and a footer by using the style tag in the head tag (same as 0-index.html)
